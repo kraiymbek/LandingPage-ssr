@@ -1,0 +1,8 @@
+app-root {
+  color: blue;
+}
+
+nav a {
+  display: inline-block;
+  padding: 10px 5px;
+}

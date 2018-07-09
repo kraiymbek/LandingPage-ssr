@@ -1,10 +1,11 @@
+import '@stencil/router';
 import { Component } from '@stencil/core';
 
 @Component({
-  tag: 'my-app',
-  styleUrl: 'my-app.scss'
+  tag: 'app-root',
+  styleUrl: 'app-root.css'
 })
-export class MyApp {
+export class AppRoot {
   render() {
     return [
       <div class="page-header">

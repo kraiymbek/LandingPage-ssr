@@ -1,5 +1,6 @@
 const express = require('express');
 const stencil = require('@stencil/core/server');
+const path = require('path');
 
 // create the express app
 const app = express();
@@ -14,7 +15,7 @@ const config = stencil.loadConfig(__dirname);
 app.use(stencil.ssrPathRegex, stencil.ssrMiddleware({ config }));
 
 // serve all static files from www directory
-app.use(express.static(config.wwwDir));
+app.use(express.static(path.join(__dirname, 'www')));
 
 // start the server
-app.listen(port, () => config.logger.info(`server started at http://localhost:${ port }`));
+app.listen(port, () => config.logger.info(`server started at http://localhost:${ port }/`));

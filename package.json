@@ -6,10 +6,9 @@
   "description": "Stencil starter with server-side rendering",
   "scripts": {
     "build": "stencil build",
-    "dev": "stencil build --dev --watch --serve",
     "dev.ssr": "stencil build --dev --es5 --watch --serve",
     "ssr": "node server.js",
-    "start": "npm run dev",
+    "start": "stencil build --dev --watch --serve",
     "start.ssr": "npm run build && npm run ssr"
   },
   "dependencies": {

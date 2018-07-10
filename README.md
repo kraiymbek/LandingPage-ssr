@@ -23,8 +23,8 @@ and run:
 ```bash
 npm install
 
-# run app with stencil-dev-server
-npm run start
+# run app with Stencil's integrated dev-server
+npm start
 
 # run app with server-side rendering
 npm run start:ssr

@@ -5,7 +5,6 @@ import Rellax from 'rellax';
 @Component({
   tag: 'parallax-component',
   styleUrl: 'parallax-component.css',
-  shadow: true,
 })
 export class ParallaxComponent {
 
@@ -13,7 +12,7 @@ export class ParallaxComponent {
   rellax: Rellax;
 
   componentDidLoad() {
-    let scene = this.host.shadowRoot.querySelectorAll('.rellax');
+    let scene = this.host.querySelectorAll('.rellax');
 
     this.rellax = new Rellax(scene[1], {
       speed: -2,

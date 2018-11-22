@@ -4,7 +4,6 @@ import { Component } from '@stencil/core';
 @Component({
   tag: 'opportunity-list',
   styleUrl: 'opportunity-list.css',
-  shadow: true,
 })
 export class OpportunityList {
 

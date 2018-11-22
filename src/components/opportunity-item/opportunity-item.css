@@ -1,0 +1,50 @@
+@import "../../global/app.css";
+
+.item-title {
+    font-family: 'Fira Sans';
+    font-weight: 700;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+li {
+    color: #98134B;
+    line-height: 22px;
+    width: 224px;
+}
+
+li span {
+    color: #202020;
+    font-family: "Open Sans";
+}
+
+ul {
+    padding-left: 17px;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+    .main-container {
+        display: flex;
+    }
+
+    .item-wrapper {
+        margin-top: 10px;
+        flex: 1;
+    }
+
+    .main-container img {
+        align-self: flex-start;
+        flex: 0 52px;
+        width: 52px;
+        height: 52px;
+        margin-right: 15px;
+    }
+
+    li {
+        width: 100%;
+    }
+
+    .item-title {
+        font-size: 16px;
+    }
+}

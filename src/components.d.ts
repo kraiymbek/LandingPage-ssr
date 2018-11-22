@@ -25,6 +25,13 @@ export namespace Components {
   interface ContactsComponent {}
   interface ContactsComponentAttributes extends StencilHTMLAttributes {}
 
+  interface OpportunityItem {
+    'listItem': any;
+  }
+  interface OpportunityItemAttributes extends StencilHTMLAttributes {
+    'listItem'?: any;
+  }
+
   interface OpportunityList {}
   interface OpportunityListAttributes extends StencilHTMLAttributes {}
 
@@ -38,6 +45,7 @@ declare global {
     'AppRoot': Components.AppRoot;
     'CarouselComponent': Components.CarouselComponent;
     'ContactsComponent': Components.ContactsComponent;
+    'OpportunityItem': Components.OpportunityItem;
     'OpportunityList': Components.OpportunityList;
     'ParallaxComponent': Components.ParallaxComponent;
   }
@@ -47,6 +55,7 @@ declare global {
     'app-root': Components.AppRootAttributes;
     'carousel-component': Components.CarouselComponentAttributes;
     'contacts-component': Components.ContactsComponentAttributes;
+    'opportunity-item': Components.OpportunityItemAttributes;
     'opportunity-list': Components.OpportunityListAttributes;
     'parallax-component': Components.ParallaxComponentAttributes;
   }
@@ -76,6 +85,12 @@ declare global {
     new (): HTMLContactsComponentElement;
   };
 
+  interface HTMLOpportunityItemElement extends Components.OpportunityItem, HTMLStencilElement {}
+  var HTMLOpportunityItemElement: {
+    prototype: HTMLOpportunityItemElement;
+    new (): HTMLOpportunityItemElement;
+  };
+
   interface HTMLOpportunityListElement extends Components.OpportunityList, HTMLStencilElement {}
   var HTMLOpportunityListElement: {
     prototype: HTMLOpportunityListElement;
@@ -93,6 +108,7 @@ declare global {
     'app-root': HTMLAppRootElement
     'carousel-component': HTMLCarouselComponentElement
     'contacts-component': HTMLContactsComponentElement
+    'opportunity-item': HTMLOpportunityItemElement
     'opportunity-list': HTMLOpportunityListElement
     'parallax-component': HTMLParallaxComponentElement
   }
@@ -102,6 +118,7 @@ declare global {
     'app-root': HTMLAppRootElement;
     'carousel-component': HTMLCarouselComponentElement;
     'contacts-component': HTMLContactsComponentElement;
+    'opportunity-item': HTMLOpportunityItemElement;
     'opportunity-list': HTMLOpportunityListElement;
     'parallax-component': HTMLParallaxComponentElement;
   }

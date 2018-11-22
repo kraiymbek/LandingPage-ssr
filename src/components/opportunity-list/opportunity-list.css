@@ -1,0 +1,22 @@
+@import "../../global/app.css";
+
+.section-descr {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 16px;
+}
+
+.container {
+    margin-bottom: 72px;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+    .section-descr {
+        flex-direction: column;
+        margin-left: 0;
+    }
+
+    .container {
+        margin-bottom: 10px;
+    }
+}

@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&subset=cyrillic');
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,600,700&subset=cyrillic');
+@import url('https://fonts.googleapis.com/css?family=Signika:400,600&subset=cyrillic');
+@import '~modern-normalize/modern-normalize.css';
+
+:root {
+  --app-primary-color: #98134B;
+  --app-primary-color-hover: #7c0c38;
+  --app-primary-color-light: #C70E59;
+  --app-black-text-color: #202020;
+}
+
+body {
+  box-sizing: border-box;
+}
+
+.section-title {
+  font-family: 'Fira Sans';
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.btn {
+  background-color: #98134B;
+  color: white;
+  height: 40px;
+  width: 110px;
+  border-radius: 4px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all ease 0.5s;
+}
+
+.btn:hover {
+  background-color: #7c0c38;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 45px;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .section-title {
+    font-size: 20px;
+    font-family: "Open Sans", sans-serif;
+  }
+}

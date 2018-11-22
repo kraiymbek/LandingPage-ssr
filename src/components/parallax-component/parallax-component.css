@@ -1,0 +1,124 @@
+@import "../../global/app.css";
+
+.title {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 45px;
+    font-weight: bold;
+    width: 543px;
+    position: absolute;
+    top: 17px;
+    z-index: 1;
+}
+
+.bg {
+    width: 100%;
+    height: auto;
+    z-index: -1;
+    display: block;
+}
+
+.container {
+    margin-top: 86px;
+    margin-bottom: 130px;
+    position: relative;
+    min-height: 590px;
+}
+
+.bg-mobile {
+    display: none;
+}
+
+.little_rec,
+.big_rec,
+.img1_group1,
+.img2_group1,
+.img3_group1,
+.img1_group2,
+.img2_group2,
+.img3_group2 {
+    position: absolute;
+    z-index: -1;
+
+}
+
+.little_rec {
+    top: 165px;
+    left: 43px;
+}
+
+.big_rec {
+    left: 324px;
+}
+
+.img1_group1 {
+    top: 320px;
+    left: 155px;
+}
+
+.img2_group1 {
+    left: 442px;
+    top: 380px;
+}
+
+.img3_group1 {
+    left: 623px;
+    top: 98px;
+}
+
+.img1_group2 {
+    top: 251px;
+    left: 488px;
+}
+
+.img2_group2 {
+    left: 804px;
+    top: 380px;
+}
+
+.img3_group2 {
+    left: 990px;
+    top: 225px;
+}
+
+.mobile {
+    display: none;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+    .mobile {
+        display: block;
+    }
+
+    .title {
+        font-size: 22px;
+        width: 294px;
+        font-family: 'Open Sans', sans-serif;
+        line-height: 36px;
+        padding-left: 15px;
+        top: -23px;
+    }
+
+    .bg {
+        display: none;
+    }
+
+    .bg-mobile {
+        display: block;
+        z-index: -1;
+        left: 0;
+        width: 100%;
+        height: auto;
+        padding-top: 40px;
+    }
+
+    .container {
+        margin-top: 45px;
+        margin-bottom: 0;
+        padding: 0;
+        min-height: 105vw;
+    }
+
+    .rellax {
+        display: none;
+    }
+}

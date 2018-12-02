@@ -1,11 +1,11 @@
-import { Component, Element, Listen } from '@stencil/core';
+import { Component, Element } from '@stencil/core';
+import Swiper from 'swiper';
 
 
 
 @Component({
   tag: 'carousel-component',
   styleUrl: 'carousel-component.css',
-  shadow: true
 })
 export class CarouselComponent {
 
@@ -47,95 +47,68 @@ export class CarouselComponent {
 
   @Element() slides: HTMLElement;
   swipedTabsSlider: any;
+  mySwiper: Swiper;
   currentSlide: any;
-  currentSlideItem: any;
-  currentPaginator: any;
-  index: any;
-  options = {
-    initialSlide: 1,
-    autoplay: {
-      delay: 5000,
-    },
-    effect: 'fade',
-    fade : {
-      crossFade: true,
-    },
-  };
-
-  @Listen('ionSlideWillChange')
-  onSlideWillChange() {
-    try{
-      this.updateIndicatorPosition();
-
-    } catch(e){
-      console.log("onSlideChanged ex", e)
-    }
-  }
-
-  @Listen('ionSlideDidChange')
-  onSlideDidChange () {
-    try {
-      this.updateIndicatorPosition();
-    } catch(e){
-      console.log("onSlideChanged ex", e)
-    }
-
-  }
+  // currentSlideItem: any;
+  // currentPaginator: any;
+  // index: any;
 
   componentDidLoad() {
-    this.swipedTabsSlider = this.slides.shadowRoot.querySelector('ion-slides');
-    this.currentSlide = this.slides.shadowRoot.querySelectorAll('ion-segment-button');
-    this.currentPaginator = this.slides.shadowRoot.querySelectorAll('.swiper-pagination-bullet');
-    this.currentSlideItem = this.slides.shadowRoot.querySelectorAll('ion-slide');
-    this.currentSlide[1].classList.add('segment-button-checked');
-    this.setOpacity();
+    this.swipedTabsSlider = this.slides.querySelector('.swiper-container');
+      this.mySwiper = new Swiper(this.swipedTabsSlider, {
+          speed: 400,
+          effect: 'fade',
+          fadeEffect: {
+              crossFade: true
+          },
+      });
+      this.mySwiper.on('slideChange', () => {
+          this.updateIndicatorPosition();
+      });
+      this.currentSlide = this.slides.querySelectorAll('.navigation-button');
+      this.currentSlide[0].classList.add('segment-button-checked');
+      // this.currentPaginator = this.slides.shadowRoot.querySelectorAll('.swiper-pagination-bullet');
+    // this.currentSlideItem = this.slides.shadowRoot.querySelectorAll('ion-slide');
+    // this.currentSlide[1].classList.add('segment-button-checked');
   }
 
-  async setOpacity() {
-    for(let i = 0; 6 > i; i++) {
-      if(await this.swipedTabsSlider.getActiveIndex() !== i) {
-        this.currentSlideItem[i].style.opacity = 0;
-        this.currentSlideItem[i].style.transitionDuration = 0;
-      }
-    }
-  }
-
-  async updateIndicatorPosition() {
-    if (6 > await this.swipedTabsSlider.getActiveIndex())
+  updateIndicatorPosition() {
+    if (6 > this.mySwiper.activeIndex)
     {
-      this.currentSlide[await this.swipedTabsSlider.getActiveIndex()].classList.add('segment-button-checked');
-      this.currentSlide[await this.swipedTabsSlider.getPreviousIndex()].classList.remove('segment-button-checked');
-      this.currentPaginator[await this.swipedTabsSlider.getActiveIndex()].classList.add('swiper-pagination-bullet-active');
-      this.currentPaginator[await this.swipedTabsSlider.getPreviousIndex()].classList.remove('swiper-pagination-bullet-active');
+        console.log(this.mySwiper.activeIndex, this.mySwiper.previousIndex );
+        this.currentSlide[this.mySwiper.activeIndex].classList.add('segment-button-checked');
+        this.currentSlide[this.mySwiper.previousIndex].classList.remove('segment-button-checked');
+      // this.currentPaginator[await this.swipedTabsSlider.getActiveIndex()].classList.add('swiper-pagination-bullet-active');
+      // this.currentPaginator[await this.swipedTabsSlider.getPreviousIndex()].classList.remove('swiper-pagination-bullet-active');
     }
   }
 
-  async selectTab(index) {
-    this.swipedTabsSlider.slideTo(index, 500);
+  selectTab(index) {
+    this.mySwiper.slideTo(index, 500);
   }
 
 
-  segmentButtons = this.sliderInfo.map((item,index) => {
+  segmentButtons = this.sliderInfo.map((item, index) => {
     return(
-        <ion-segment-button key={item.tabName}
-                            onClick={this.selectTab.bind(this,index)}
-                            class="tab-button"
-        >{item.tabName}</ion-segment-button>
+        <li key={item.tabName}
+            onClick={() => {this.selectTab(index)}}
+                            class="navigation-button"
+        >{item.tabName}</li>
     );
   });
 
-  paginatorButtons = this.sliderInfo.map((item,index) => {
-    return(
-        <span class='swiper-pagination-bullet' key={item.tabName}
-              onClick={this.selectTab.bind(this,index)}
-        ></span>
-    );
-  });
+  // paginatorButtons = this.sliderInfo.map((item,index) => {
+  //   return(
+  //       <span class='swiper-pagination-bullet' key={item.tabName}
+  //             onClick={this.selectTab.bind(this,index)}
+  //       ></span>
+  //   );
+  // });
 
   sliderItem = this.sliderInfo.map(
       item => {
         return(
-            <ion-slide data-swiper-autoplay="3000" class='slide'>
+            <div class="swiper-slide slide">
               <div class='slide-left'>
                 <h4 class='slide-title'>{item.tabName}</h4>
                 <p class='slide-description'>{item.description}</p>
@@ -144,34 +117,33 @@ export class CarouselComponent {
               <div class='slide-right'>
                 <img src={item.path} alt={item.tabName}/>
               </div>
-            </ion-slide>
+            </div>
         );
       });
-
-  desktopButtons = (<ion-segment  class="swiped-tab">
-    {this.segmentButtons}
-  </ion-segment>);
-
-
 
 
   render() {
     return (
-        <div class='main-container'>
-          <div class='container'>
-            <h3 class='section-title'>Функционал ForteKassa</h3>
-            {this.desktopButtons}
-          </div>
-          <div class='container'>
-            <ion-slides options={this.options} pager={true} >
-              {this.sliderItem}
-            </ion-slides>
-          </div>
-          <div class='swiper-pagination'>
-            {this.paginatorButtons}
-          </div>
+        <div class="carousel">
+            <div class='main-container'>
+                <div class='container'>
+                    <h3 class='section-title'>Функционал ForteKassa</h3>
+                    <ul class="navigation-buttons-list">
+                        {this.segmentButtons}
+                    </ul>
+                </div>
+                <div class="container">
+                    <div class='swiper-container'>
+                        <div class="swiper-wrapper">
+                            {this.sliderItem}
+                        </div>
+                    </div>
+                </div>
+                {/*<div class='swiper-pagination'>*/}
+                {/*/!*{this.paginatorButtons}*!/*/}
+                {/*</div>*/}
+            </div>
         </div>
-
     );
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Prop, Element, EventEmitter, Event } from '@stencil/core';
+import { Component, Prop, Element, EventEmitter, Event, Watch } from '@stencil/core';
 import IMask from 'imask';
 
 
@@ -25,6 +25,10 @@ export class InputField {
   @Prop() err_message: string;
   @Prop() mask: boolean;
   @Prop() value: string;
+  @Watch('err_message')
+    watchHandler(newValue: boolean, oldValue: boolean) {
+        console.log('The new value of activated is: ', newValue, oldValue);
+    }
 
   phoneMask: IMask;
   maskInputEl: any;
@@ -52,7 +56,7 @@ export class InputField {
                    placeholder={this.placeholder}
                    id={this.mask ? 'input-mask' : null}
                    class={this.err_message ? 'err_input' : null}
-                   onBlur={(event) => this.submitDataHandler(event)}
+                   onInput={(event) => this.submitDataHandler(event)}
             />
             {this.err_message ? <div class='err_message'>{this.err_message}</div> : null}
           </div>

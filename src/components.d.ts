@@ -7,9 +7,7 @@
 
 import '@stencil/core';
 
-import '@stencil/router';
-import '@stencil/state-tunnel';
-import '@ionic/core';
+
 
 
 export namespace Components {

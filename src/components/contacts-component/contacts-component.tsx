@@ -1,4 +1,5 @@
 import { Component, Element, Listen, State } from '@stencil/core';
+import validator from 'validator';
 
 @Component({
   tag: 'contacts-component',
@@ -9,9 +10,14 @@ export class ContactsComponent {
 
   @Listen('submitData')
   submitDataHandler(event: CustomEvent) {
-    this.submitData.push(event.detail);
+    if (event.detail.name === 'email') {
+        validator.isEmail(event.detail.value) ? this.errors = {...this.errors, email: true}: this.errors = {...this.errors, email: false};
+    }
+
+    console.log(this.errors.email);
+    // this.submitData.push(event.detail);
+
   }
-  @State() value: string;
   date = new Date();
   @State() submitData = [];
   @State() isResponse = false;
@@ -22,65 +28,33 @@ export class ContactsComponent {
     phone: false,
   };
 
-
-  validate(data) {
-    console.log(data);
-    let name = this.host.querySelector('.form-container')['name'];
-    let email = this.host.querySelector('.form-container')['email'];
-    let store = this.host.querySelector('.form-container')['store'];
-    let phone = this.host.querySelector('.form-container')['phone'];
-
-    if(!data.name) {
-      this.errors.name = true;
-      name.focus();
-    }
-
-    const reEmail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-    if(!data.email || data.email.match(reEmail)) {
-      this.errors.email = true;
-      email.focus();
-    }
-
-    if(!data.brand) {
-      this.errors.brand = true;
-      store.focus();
-    }
-
-    const rePhone = /^((?!(0))[0-9]{10})$/;
-    if(!data.telephone || !data.telephone.match(rePhone)) {
-      this.errors.phone = true;
-      phone.focus();
-    }
-  }
-
   handleSubmit(e) {
     e.preventDefault();
-    let preparedData = {};
-    this.submitData.forEach(item => {
-      if (item.name === 'store') {
-        preparedData['brand'] = item.value ? item.value : '';
-      }
+    // let preparedData = {};
+    // this.submitData.forEach(item => {
+    //   if (item.name === 'store') {
+    //     preparedData['brand'] = item.value ? item.value : '';
+    //   }
+    //
+    //   if(item.name === 'name') {
+    //     preparedData['name'] = item.value || '';
+    //   }
+    //
+    //   if(item.name === 'email') {
+    //     preparedData['email'] = item.value || '';
+    //   }
+    //
+    //   if(item.name === 'phone') {
+    //     let newValue = item.value
+    //         .replace(/-/gi, '')
+    //         .replace('(', '')
+    //         .replace(')', '')
+    //         .replace('+', '')
+    //         .replace(/ /gi, '') || '';
+    //     preparedData['telephone'] = newValue;
+    //   }
+    // });
 
-      if(item.name === 'name') {
-        preparedData['name'] = item.value || '';
-      }
-
-      if(item.name === 'email') {
-        preparedData['email'] = item.value || '';
-      }
-
-      if(item.name === 'phone') {
-        let newValue = item.value
-            .replace(/-/gi, '')
-            .replace('(', '')
-            .replace(')', '')
-            .replace('+', '')
-            .replace(/ /gi, '') || '';
-        preparedData['telephone'] = newValue;
-      }
-    });
-
-    this.validate(preparedData);
 
 
 

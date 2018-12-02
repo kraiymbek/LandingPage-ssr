@@ -1,6 +1,6 @@
 @import "../../global/app.css";
 
-.title {
+.parallax-section .title {
     font-family: 'Fira Sans', sans-serif;
     font-size: 45px;
     font-weight: bold;
@@ -10,21 +10,21 @@
     z-index: 1;
 }
 
-.bg {
+.parallax-section .bg {
     width: 100%;
     height: auto;
     z-index: -1;
     display: block;
 }
 
-.container {
+.parallax-section .container {
     margin-top: 86px;
     margin-bottom: 130px;
     position: relative;
     min-height: 590px;
 }
 
-.bg-mobile {
+.parallax-section .bg-mobile {
     display: none;
 }
 
@@ -85,11 +85,11 @@
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
-    .mobile {
+    .parallax-section .mobile {
         display: block;
     }
 
-    .title {
+    .parallax-section .title {
         font-size: 22px;
         width: 294px;
         font-family: 'Open Sans', sans-serif;
@@ -98,11 +98,11 @@
         top: -23px;
     }
 
-    .bg {
+    .parallax-section .bg {
         display: none;
     }
 
-    .bg-mobile {
+    .parallax-section .bg-mobile {
         display: block;
         z-index: -1;
         left: 0;
@@ -111,14 +111,14 @@
         padding-top: 40px;
     }
 
-    .container {
+    .parallax-section .container {
         margin-top: 45px;
         margin-bottom: 0;
         padding: 0;
         min-height: 105vw;
     }
 
-    .rellax {
+    .parallax-section .rellax {
         display: none;
     }
 }

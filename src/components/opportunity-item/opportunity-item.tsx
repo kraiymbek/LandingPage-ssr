@@ -3,7 +3,8 @@ import { Component, Prop } from '@stencil/core';
 
 @Component({
   tag: 'opportunity-item',
-  styleUrl: 'opportunity-item.css'
+  styleUrl: 'opportunity-item.css',
+
 })
 export class OpportunityItem {
 
@@ -22,13 +23,15 @@ export class OpportunityItem {
       );
     });
     return (
-        <div class='main-container'>
-          <img src={this.listItem.path} alt=""/>
-          <div class='item-wrapper'>
-            <p class='item-title'>{this.listItem.title}</p>
-            <ul>
-              {this.descriptionList}
-            </ul>
+        <div class="opportunity-item">
+          <div class='main-container'>
+            <img src={this.listItem.path} alt=""/>
+            <div class='item-wrapper'>
+              <p class='item-title'>{this.listItem.title}</p>
+              <ul>
+                {this.descriptionList}
+              </ul>
+            </div>
           </div>
         </div>
     );

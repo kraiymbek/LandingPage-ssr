@@ -1,0 +1,212 @@
+@import "../../global/app.css";
+
+.contacts-component .contacts {
+    display: flex;
+}
+
+.contacts-component .contact-form {
+    width: 55%;
+}
+
+.contacts-component .container {
+    margin-top: 87px;
+}
+
+.contacts-component .contact-description {
+    width: 45%;
+}
+
+.contacts-component .form-container {
+    width: 379px;
+    height: 460px;
+    box-shadow: 0 2px 9px rgba(0,0,0,0.25);
+    padding: 40px 48px;
+    border-radius: 16px;
+    background-color: white;
+    box-sizing: content-box;
+}
+
+.contacts-component .contact-title {
+    font-family: "Fira Sans";
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 1px;
+    color: #98134B;
+    margin-bottom: 10px;
+}
+
+.contacts-component .contact-desc-item {
+    display: flex;
+}
+
+.contacts-component .contact-desc-item img {
+    margin-right: 15px;
+}
+
+.contacts-component .contact-desc-item p {
+    font-family: "Open Sans";
+    font-size: 16px;
+}
+
+.contacts-component .contact-desc-item p:nth-child(1) {
+    margin-bottom: 0;
+}
+
+.contacts-component .contact-desc-item p a {
+    text-decoration: none;
+    color: #202020;
+}
+
+.contacts-component .mb-zero {
+    margin-bottom: 0;
+}
+
+.contacts-component .main-container {
+    position: relative;
+}
+
+.contacts-component .footer-bg {
+    background-image: url('../../assets/BG.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 300px;
+    opacity: .6;
+    position: absolute;
+    background-size: cover;
+    transform: translateY(-233px);
+    z-index: -1;
+}
+
+.contacts-component .copyright {
+    display: flex;
+    justify-content: flex-end;
+    align-content: flex-end;
+    transform: translateY(346px);
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    font-family: 'Signika', sans-serif;
+}
+
+.contacts-component .form-btn {
+    background-color: #98134B;
+    color: white;
+    height: 44px;
+    width: 100%;
+    border-radius: 4px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: all ease 0.5s;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    box-sizing: border-box;
+}
+
+.contacts-component .form-btn:hover {
+    background-color: #7c0c38;
+}
+
+.contacts-component .success-response {
+    background-color: #5FB105;
+}
+
+.contacts-component .success-response img {
+    vertical-align: middle
+}
+
+.contacts-component .success-response:hover {
+    background-color: #5FB105;
+}
+
+.contacts-component input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+    .contacts-component .contacts {
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+    }
+
+    .contacts-component .section-title {
+        font-size: 20px;
+        color: white;
+        font-family: "Open Sans", sans-serif;
+        margin-bottom: 22px;
+    }
+
+    .contacts-component .main-container {
+        background-image: url(../../assets/gradient-bg1.png);
+        background-repeat: no-repeat;
+        padding-top: 45px;
+        background-size: 100% 70%;
+        padding-bottom: 29px;
+    }
+
+    .contacts-component .form-container {
+        width: auto;
+        height: 100%;
+        box-shadow: 0 2px 9px rgba(0,0,0,0.25);
+        padding: 24px 15px;
+        border-radius: 6px;
+        background-color: white;
+    }
+
+    .contacts-component .contact-form {
+        width: 100%;
+    }
+
+    .contacts-component .contact-description {
+        width: 100%;
+        margin-top: 70px;
+        transform: translateY(23px);
+    }
+
+    .contacts-component .field-wrap input {
+        padding: 9px 11px;
+    }
+
+    .contacts-component .footer-bg {
+        display: none;
+    }
+
+    .contacts-component .container {
+        margin-top: 0;
+    }
+
+    .contacts-component .copyright {
+        transform: translateY(0);
+        color: #E0E5E7;
+        justify-content: center;
+        margin-bottom: 15px;
+        font-size: 13px;
+    }
+
+    .contacts-component .contact-desc-item {
+        border-bottom: 1px solid #F2F4F5;
+        padding-bottom: 18px;
+    }
+
+    .contacts-component .contact-desc-item p {
+        font-size: 13px;
+    }
+
+    .contacts-component .contact-desc-item:nth-child(4) {
+        border: 0;
+    }
+
+    .contacts-component .contact-desc-item p a {
+        color: #3C98ED;
+    }
+
+    .contacts-component .contact-desc-item span {
+        color: #3C98ED;
+    }
+
+    .contacts-component .contact-title {
+        font-size: 22px;
+    }
+}

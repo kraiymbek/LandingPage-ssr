@@ -51,10 +51,12 @@ export class OpportunityList {
 
   render() {
     return (
-        <div class='container'>
-          <h3 class='section-title'>Возможности ForteKassa</h3>
-          <div class='section-descr'>
-            {this.transformedItems}
+        <div class="opportunity-list-section">
+          <div class='container'>
+            <h3 class='section-title'>Возможности ForteKassa</h3>
+            <div class='section-descr'>
+              {this.transformedItems}
+            </div>
           </div>
         </div>
     );

@@ -9,6 +9,7 @@ import '@stencil/core';
 
 import '@stencil/router';
 import '@stencil/state-tunnel';
+import '@ionic/core';
 
 
 export namespace Components {
@@ -24,6 +25,26 @@ export namespace Components {
 
   interface ContactsComponent {}
   interface ContactsComponentAttributes extends StencilHTMLAttributes {}
+
+  interface InputField {
+    'err_message': string;
+    'label': string;
+    'mask': boolean;
+    'name': string;
+    'placeholder': string;
+    'type': string;
+    'value': string;
+  }
+  interface InputFieldAttributes extends StencilHTMLAttributes {
+    'err_message'?: string;
+    'label'?: string;
+    'mask'?: boolean;
+    'name'?: string;
+    'onSubmitData'?: (event: CustomEvent) => void;
+    'placeholder'?: string;
+    'type'?: string;
+    'value'?: string;
+  }
 
   interface OpportunityItem {
     'listItem': any;
@@ -45,6 +66,7 @@ declare global {
     'AppRoot': Components.AppRoot;
     'CarouselComponent': Components.CarouselComponent;
     'ContactsComponent': Components.ContactsComponent;
+    'InputField': Components.InputField;
     'OpportunityItem': Components.OpportunityItem;
     'OpportunityList': Components.OpportunityList;
     'ParallaxComponent': Components.ParallaxComponent;
@@ -55,6 +77,7 @@ declare global {
     'app-root': Components.AppRootAttributes;
     'carousel-component': Components.CarouselComponentAttributes;
     'contacts-component': Components.ContactsComponentAttributes;
+    'input-field': Components.InputFieldAttributes;
     'opportunity-item': Components.OpportunityItemAttributes;
     'opportunity-list': Components.OpportunityListAttributes;
     'parallax-component': Components.ParallaxComponentAttributes;
@@ -85,6 +108,12 @@ declare global {
     new (): HTMLContactsComponentElement;
   };
 
+  interface HTMLInputFieldElement extends Components.InputField, HTMLStencilElement {}
+  var HTMLInputFieldElement: {
+    prototype: HTMLInputFieldElement;
+    new (): HTMLInputFieldElement;
+  };
+
   interface HTMLOpportunityItemElement extends Components.OpportunityItem, HTMLStencilElement {}
   var HTMLOpportunityItemElement: {
     prototype: HTMLOpportunityItemElement;
@@ -108,6 +137,7 @@ declare global {
     'app-root': HTMLAppRootElement
     'carousel-component': HTMLCarouselComponentElement
     'contacts-component': HTMLContactsComponentElement
+    'input-field': HTMLInputFieldElement
     'opportunity-item': HTMLOpportunityItemElement
     'opportunity-list': HTMLOpportunityListElement
     'parallax-component': HTMLParallaxComponentElement
@@ -118,6 +148,7 @@ declare global {
     'app-root': HTMLAppRootElement;
     'carousel-component': HTMLCarouselComponentElement;
     'contacts-component': HTMLContactsComponentElement;
+    'input-field': HTMLInputFieldElement;
     'opportunity-item': HTMLOpportunityItemElement;
     'opportunity-list': HTMLOpportunityListElement;
     'parallax-component': HTMLParallaxComponentElement;

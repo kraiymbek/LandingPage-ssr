@@ -248,7 +248,6 @@
         box-shadow: none;
         height: 100%;
         width: 100%;
-        padding: 20px;
     }
 
 
@@ -284,17 +283,17 @@
         margin-bottom: 70px;
     }
 
-    .carousel .swiper-pagination-bullet {
+    .swiper-pagination-bullet {
         background: #C1C7C9;
         margin-left: 3px;
         margin-right: 3px;
     }
 
-    .carousel .swiper-pagination-bullet-active {
+    .swiper-pagination-bullet-active {
         background: #5C7A82;
     }
 
-    .carousel .swiper-pagination {
+    .swiper-pagination {
         display: block;
         left: 37%;
         top: 92%;

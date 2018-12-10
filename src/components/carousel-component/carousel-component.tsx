@@ -49,9 +49,7 @@ export class CarouselComponent {
   swipedTabsSlider: any;
   mySwiper: Swiper;
   currentSlide: any;
-  // currentSlideItem: any;
-  // currentPaginator: any;
-  // index: any;
+  currentPaginator: any;
 
   componentDidLoad() {
     this.swipedTabsSlider = this.slides.querySelector('.swiper-container');
@@ -67,9 +65,7 @@ export class CarouselComponent {
       });
       this.currentSlide = this.slides.querySelectorAll('.navigation-button');
       this.currentSlide[0].classList.add('segment-button-checked');
-      // this.currentPaginator = this.slides.shadowRoot.querySelectorAll('.swiper-pagination-bullet');
-    // this.currentSlideItem = this.slides.shadowRoot.querySelectorAll('ion-slide');
-    // this.currentSlide[1].classList.add('segment-button-checked');
+      this.currentPaginator = this.slides.querySelectorAll('.swiper-pagination-bullet');
   }
 
   updateIndicatorPosition() {
@@ -78,8 +74,8 @@ export class CarouselComponent {
         console.log(this.mySwiper.activeIndex, this.mySwiper.previousIndex );
         this.currentSlide[this.mySwiper.activeIndex].classList.add('segment-button-checked');
         this.currentSlide[this.mySwiper.previousIndex].classList.remove('segment-button-checked');
-      // this.currentPaginator[await this.swipedTabsSlider.getActiveIndex()].classList.add('swiper-pagination-bullet-active');
-      // this.currentPaginator[await this.swipedTabsSlider.getPreviousIndex()].classList.remove('swiper-pagination-bullet-active');
+        this.currentPaginator[this.mySwiper.activeIndex].classList.add('swiper-pagination-bullet-active');
+        this.currentPaginator[this.mySwiper.previousIndex].classList.remove('swiper-pagination-bullet-active');
     }
   }
 
@@ -97,13 +93,13 @@ export class CarouselComponent {
     );
   });
 
-  // paginatorButtons = this.sliderInfo.map((item,index) => {
-  //   return(
-  //       <span class='swiper-pagination-bullet' key={item.tabName}
-  //             onClick={this.selectTab.bind(this,index)}
-  //       ></span>
-  //   );
-  // });
+  paginatorButtons = this.sliderInfo.map((item,index) => {
+    return(
+        <span class='swiper-pagination-bullet' key={item.tabName}
+              onClick={this.selectTab.bind(this,index)}
+        ></span>
+    );
+  });
 
   sliderItem = this.sliderInfo.map(
       item => {
@@ -139,9 +135,9 @@ export class CarouselComponent {
                         </div>
                     </div>
                 </div>
-                {/*<div class='swiper-pagination'>*/}
-                {/*/!*{this.paginatorButtons}*!/*/}
-                {/*</div>*/}
+                <div class='swiper-pagination'>
+                {this.paginatorButtons}
+                </div>
             </div>
         </div>
     );

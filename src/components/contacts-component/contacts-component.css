@@ -108,6 +108,13 @@
     background-color: #7c0c38;
 }
 
+.contacts-component .err_message {
+    font-family: "Open Sans", sans-serif;
+    font-size: 12px;
+    color: #FB2F59;
+    margin-bottom: 5px;
+}
+
 .contacts-component .success-response {
     background-color: #5FB105;
 }

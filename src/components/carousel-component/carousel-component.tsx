@@ -59,23 +59,28 @@ export class CarouselComponent {
           fadeEffect: {
               crossFade: true
           },
+          autoplay: {
+              delay: 4000,
+          },
+          spaceBetween: 100,
+          pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+          },
       });
       this.mySwiper.on('slideChange', () => {
           this.updateIndicatorPosition();
       });
       this.currentSlide = this.slides.querySelectorAll('.navigation-button');
       this.currentSlide[0].classList.add('segment-button-checked');
-      this.currentPaginator = this.slides.querySelectorAll('.swiper-pagination-bullet');
+      this.currentPaginator = this.slides.querySelectorAll('.pagination-bullet');
   }
 
   updateIndicatorPosition() {
     if (6 > this.mySwiper.activeIndex)
     {
-        console.log(this.mySwiper.activeIndex, this.mySwiper.previousIndex );
         this.currentSlide[this.mySwiper.activeIndex].classList.add('segment-button-checked');
         this.currentSlide[this.mySwiper.previousIndex].classList.remove('segment-button-checked');
-        this.currentPaginator[this.mySwiper.activeIndex].classList.add('swiper-pagination-bullet-active');
-        this.currentPaginator[this.mySwiper.previousIndex].classList.remove('swiper-pagination-bullet-active');
     }
   }
 
@@ -93,14 +98,6 @@ export class CarouselComponent {
     );
   });
 
-  paginatorButtons = this.sliderInfo.map((item,index) => {
-    return(
-        <span class='swiper-pagination-bullet' key={item.tabName}
-              onClick={this.selectTab.bind(this,index)}
-        ></span>
-    );
-  });
-
   sliderItem = this.sliderInfo.map(
       item => {
         return(
@@ -111,7 +108,9 @@ export class CarouselComponent {
                 <div class='line'></div>
               </div>
               <div class='slide-right'>
-                <img src={item.path} alt={item.tabName}/>
+                  <div class="inner-slider-right">
+                      <img src={item.path} alt={item.tabName}/>
+                  </div>
               </div>
             </div>
         );
@@ -133,10 +132,8 @@ export class CarouselComponent {
                         <div class="swiper-wrapper">
                             {this.sliderItem}
                         </div>
+                        <div class="swiper-pagination"></div>
                     </div>
-                </div>
-                <div class='swiper-pagination'>
-                {this.paginatorButtons}
                 </div>
             </div>
         </div>

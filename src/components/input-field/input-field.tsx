@@ -1,4 +1,4 @@
-import { Component, Prop, Element, EventEmitter, Event, Watch } from '@stencil/core';
+import { Component, Prop, Element, EventEmitter, Event } from '@stencil/core';
 import IMask from 'imask';
 
 
@@ -16,6 +16,9 @@ export class InputField {
       name: this.name,
       value: e.target.value,
     });
+      if (this.name === 'email' && !e.target.value) {
+          this.maskInputEl.value = "+7";
+      }
   }
 
   @Prop({reflectToAttr: true}) placeholder: string;
@@ -25,10 +28,7 @@ export class InputField {
   @Prop() err_message: string;
   @Prop() mask: boolean;
   @Prop() value: string;
-  @Watch('err_message')
-    watchHandler(newValue: boolean, oldValue: boolean) {
-        console.log('The new value of activated is: ', newValue, oldValue);
-    }
+
 
   phoneMask: IMask;
   maskInputEl: any;
@@ -37,7 +37,9 @@ export class InputField {
   componentDidLoad() {
     if(this.mask) {
       this.maskInputEl = this.host.querySelector('#input-mask');
-      this.maskInputEl.defaultValue = "+7";
+      if (!this.maskInputEl.value) {
+          this.maskInputEl.defaultValue = "+7";
+      }
       this.phoneMask = new IMask(
           this.maskInputEl, {
             mask: '+{7} (000) 000-00-00'

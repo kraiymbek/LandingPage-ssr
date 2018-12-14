@@ -7,17 +7,6 @@ import validator from 'validator';
 })
 export class ContactsComponent {
   @Element() host: HTMLElement;
-
-  @Listen('submitData')
-  submitDataHandler(event: CustomEvent) {
-    if (event.detail.name === 'email') {
-        validator.isEmail(event.detail.value) ? this.errors = {...this.errors, email: true}: this.errors = {...this.errors, email: false};
-    }
-
-    console.log(this.errors.email);
-    // this.submitData.push(event.detail);
-
-  }
   date = new Date();
   @State() submitData = [];
   @State() isResponse = false;
@@ -25,65 +14,85 @@ export class ContactsComponent {
     name: false,
     email: false,
     brand: false,
-    phone: false,
+    telephone: false,
   };
+  form: any;
+
+  @State() formIsValid = true;
+
+
+
+  componentDidLoad() {
+      this.form = this.host.querySelector('.form-container');
+  }
+
+  isTelephoneFormat(telephone) {
+      const re = /^((?!(0))[0-9]{11})$/g;
+    return this.getTelephoneFormat(telephone).match(re);
+  }
+
+  getTelephoneFormat(telephone) {
+      let newValue = telephone
+          .replace(/-/gi, '')
+          .replace('(', '')
+          .replace(')', '')
+          .replace('+', '')
+          .replace(/ /gi, '') || '';
+
+      return newValue;
+  }
+
+    @Listen('submitData')
+    submitDataHandler(event: CustomEvent) {
+        if (event.detail.name === 'email') {
+            validator.isEmail(event.detail.value) ? this.errors = {...this.errors, email: false} : this.errors = {...this.errors, email: true};
+        }
+
+        if (event.detail.name === 'name') {
+            event.detail.value.length < 2 ? this.errors = {...this.errors, name: true} : this.errors = {...this.errors, name: false};
+        }
+
+        if (event.detail.name === 'brand') {
+            event.detail.value.length < 2 ? this.errors = {...this.errors, brand: true} : this.errors = {...this.errors, brand: false};
+        }
+
+        if (event.detail.name === 'telephone') {
+            this.isTelephoneFormat(event.detail.value) ? this.errors = {...this.errors, telephone: false} : this.errors = {...this.errors, telephone: true};
+        }
+
+    }
 
   handleSubmit(e) {
     e.preventDefault();
-    // let preparedData = {};
-    // this.submitData.forEach(item => {
-    //   if (item.name === 'store') {
-    //     preparedData['brand'] = item.value ? item.value : '';
-    //   }
-    //
-    //   if(item.name === 'name') {
-    //     preparedData['name'] = item.value || '';
-    //   }
-    //
-    //   if(item.name === 'email') {
-    //     preparedData['email'] = item.value || '';
-    //   }
-    //
-    //   if(item.name === 'phone') {
-    //     let newValue = item.value
-    //         .replace(/-/gi, '')
-    //         .replace('(', '')
-    //         .replace(')', '')
-    //         .replace('+', '')
-    //         .replace(/ /gi, '') || '';
-    //     preparedData['telephone'] = newValue;
-    //   }
-    // });
+    if (!this.errors.telephone && !this.errors.email && !this.errors.brand && !this.errors.name && e.target[2].value && e.target[0].value && e.target[1].value && e.target[3].value) {
+        this.formIsValid = true;
 
+        let preparedData = {
+            brand : e.target[2].value,
+            telephone : this.getTelephoneFormat(e.target[3].value),
+            email : e.target[1].value,
+            name : e.target[0].value
+        };
 
-
-
-
-
-
-    // let form = new FormData();
-
-    // form.append('data', JSON.stringify(preparedData));
-    // console.log(form);
-
-
-    // fetch('https://api.dar.kz/v1/merchants/application', {
-    //   method: "POST",
-    //   headers: { "Content-Type" : "application/json" },
-    //   body: form.get('data'),
-    // })
-    //     .then((response) => {
-    //       if (response) {
-    //         this.isResponse = true;
-    //         setTimeout(() => {this.isResponse = false;}, 3000);
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-  }
-
-
+        fetch('https://api.dar.kz/v1/merchants/application', {
+            method: "POST",
+            headers: { "Content-Type" : "application/json" },
+            body: JSON.stringify(preparedData),
+        })
+            .then((response) => {
+                if (response) {
+                    this.isResponse = true;
+                    setTimeout(() => {this.isResponse = false;}, 3000);
+                    this.form.reset();
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    } else {
+        this.formIsValid = false;
+        console.log("form is not valid"); }
+    }
 
   render() {
     return (
@@ -101,23 +110,26 @@ export class ContactsComponent {
                                  err_message={this.errors.name ? "Введите имя" : null}></input-field>
                     <input-field name="email"
                                  label="E-mail"
-                                 type="email"
+                                 type="text"
                                  placeholder="Введите ваше email"
                                  err_message={this.errors.email ?"Введите email" : null}></input-field>
-                    <input-field name="store"
+                    <input-field name="brand"
                                  label="Название магазина"
                                  type="text"
                                  placeholder="Введите название вашего магазина"
                                  err_message={this.errors.brand ? "Введите название магазина" : null}></input-field>
-                    <input-field name="phone"
+                    <input-field name="telephone"
                                  label="Номер телефона"
                                  type="text"
                                  placeholder="+7"
                                  value="+7"
-                                 err_message={this.errors.phone ? "Введите номер телефона" : null}
+                                 err_message={this.errors.telephone ? "Введите правильный номер телефона" : null}
                                  mask={true}
                     ></input-field>
-                    {this.isResponse ? <button class='form-btn success-response' disabled type="submit"><img src="/assets/icon/success-response.svg" alt="success"/>Заявка успешно оставлена</button> : <button class='form-btn' type="submit">Оставить Заявку</button>}
+                      {this.formIsValid ? null : <div class="err_message">Пожалуйста, заполните все поля!</div>}
+                    {this.isResponse ?
+                        <button class='form-btn success-response' disabled><img src="/assets/icon/success-response.svg" alt="success"/>Заявка успешно оставлена</button>
+                        : <button class='form-btn' type="submit">Оставить Заявку</button> }
                   </form>
                 </div>
                 <div class='contact-description'>
@@ -128,7 +140,7 @@ export class ContactsComponent {
                   </div>
                   <div class='contact-desc-item'>
                     <img src="/assets/icon/contacts-icon/contacts-icon2.svg" alt="Телефон"/>
-                    <p>Тел: <a href="callto:87271245678">+7 (702) 112-02-03</a></p>git
+                    <p>Тел: <a href="callto:87271245678">+7 (702) 112-02-03</a></p>
                   </div>
                   <div class='contact-desc-item'>
                     <img src="/assets/icon/contacts-icon/contacts-icon3.svg" alt="Call center"/>

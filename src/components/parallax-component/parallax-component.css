@@ -53,31 +53,43 @@
 .img1_group1 {
     top: 320px;
     left: 155px;
+    width: 273px;
+    height: 273px;
 }
 
 .img2_group1 {
     left: 442px;
     top: 380px;
+    width: 352px;
+    height: 272px;
 }
 
 .img3_group1 {
     left: 623px;
     top: 98px;
+    width: 352px;
+    height: 272px;
 }
 
 .img1_group2 {
     top: 251px;
     left: 488px;
+    width: 118px;
+    height: 118px;
 }
 
 .img2_group2 {
     left: 804px;
     top: 380px;
+    width: 170px;
+    height: 170px;
 }
 
 .img3_group2 {
     left: 990px;
     top: 225px;
+    width: 180px;
+    height: 180px;
 }
 
 .mobile {

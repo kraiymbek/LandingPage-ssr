@@ -81,6 +81,14 @@
     transition-property: transform;
 }
 
+.swiper-slide .slide-title {
+    margin-top: 0;
+}
+
+.swiper-slide .slide-description {
+    margin: 0 !important;
+}
+
 .segment-button-checked
 {
     background-color: var(--app-primary-color-light);
@@ -101,6 +109,17 @@
     flex-direction: column;
     align-items: flex-start;
     margin-top: -105px;
+    height: 134px;
+    position: relative;
+}
+
+.carousel .slide-left::after {
+    content: "";
+    position: absolute;
+    background-color: var(--app-primary-color);
+    height: 5px;
+    width: 70px;
+    transform: translateY(190px);
 }
 
 .carousel .slide-right {
@@ -135,7 +154,8 @@
     font-size: 24px;
     color: var(--app-primary-color);
     letter-spacing: 1px;
-    margin-bottom: 0;
+    display: flex;
+    margin-bottom: 20px;
 }
 
 .carousel .line {
@@ -180,7 +200,7 @@
     height: 317px;
     position: absolute;
     right: 0;
-    top: 197px;
+    top: 219px;
     z-index: -1;
     border-radius: 6px;
 }
@@ -204,6 +224,15 @@
         display: none;
     }
 
+    .carousel .slide-left::after {
+        content: "";
+        position: relative;
+        background-color: var(--app-primary-color);
+        height: 4px;
+        width: 70px;
+        transform: translateY(10px);
+    }
+
 
     .carousel .main-container {
         background-image: url('../../assets/carousel-bg-mobile.png');
@@ -218,10 +247,11 @@
 
     .carousel .slide-left {
         order: 2;
-        height: 100%;
         width: 90%;
-        margin-top: 0;
         padding: 0 15px;
+        height: 181px;
+        margin-top: 15px;
+        margin-bottom: 48px;
     }
 
     .carousel .slide-right {
@@ -259,6 +289,7 @@
         font-family: "Open Sans", sans-serif;
         font-weight: 600;
         font-size: 20px;
+        margin-bottom: 10px;
     }
 
     .carousel .slide-description {
@@ -289,8 +320,7 @@
 
     .swiper-pagination-bullet {
         background: #C1C7C9;
-        margin: 0 3px;
-        opacity: .2;
+        margin: 0 4px;
         width: 8px;
         height: 8px;
         display: inline-block;

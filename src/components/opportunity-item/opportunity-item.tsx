@@ -28,7 +28,7 @@ export class OpportunityItem {
             <img src={this.listItem.path} alt=""/>
             <div class='item-wrapper'>
               <p class='item-title'>{this.listItem.title}</p>
-              <ul>
+              <ul class='list'>
                 {this.descriptionList}
               </ul>
             </div>

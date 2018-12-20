@@ -1,4 +1,4 @@
-import { Component, Element } from '@stencil/core';
+import { Component, Element, Prop } from '@stencil/core';
 import Rellax from 'rellax';
 
 
@@ -10,55 +10,58 @@ export class ParallaxComponent {
 
   @Element() host: HTMLElement;
   rellax: Rellax;
+  @Prop({ context: 'isServer' }) private isServer: boolean;
 
-  componentDidLoad() {
-    let scene = this.host.querySelectorAll('.rellax');
 
-    this.rellax = new Rellax(scene[1], {
-      speed: -2,
-      center: false,
-      wrapper: null,
-      round: true,
-      vertical: true,
-      horizontal: false
-    });
+    componentDidLoad() {
+        if (this.isServer === false) {
+            let scene = this.host.querySelectorAll('.rellax');
 
-    this.rellax = new Rellax(scene[3], {
-      speed: -2,
-      center: false,
-      wrapper: null,
-      round: false,
-      vertical: true,
-      horizontal: false
-    });
+            this.rellax = new Rellax(scene[1], {
+                speed: -2,
+                center: false,
+                wrapper: null,
+                round: true,
+                vertical: true,
+                horizontal: false
+            });
 
-    this.rellax = new Rellax(scene[2], {
-      speed: 1,
-      center: false,
-      wrapper: null,
-      round: true,
-      vertical: true,
-      horizontal: false
-    });
+            this.rellax = new Rellax(scene[3], {
+                speed: -2,
+                center: false,
+                wrapper: null,
+                round: false,
+                vertical: true,
+                horizontal: false
+            });
 
-    this.rellax = new Rellax(scene[4], {
-      speed: 1,
-      center: false,
-      wrapper: null,
-      round: true,
-      vertical: true,
-      horizontal: false
-    });
+            this.rellax = new Rellax(scene[2], {
+                speed: 1,
+                center: false,
+                wrapper: null,
+                round: true,
+                vertical: true,
+                horizontal: false
+            });
 
-    this.rellax = new Rellax(scene[5], {
-      speed: 1,
-      center: false,
-      wrapper: null,
-      round: true,
-      vertical: true,
-      horizontal: false
-    });
+            this.rellax = new Rellax(scene[4], {
+                speed: 1,
+                center: false,
+                wrapper: null,
+                round: true,
+                vertical: true,
+                horizontal: false
+            });
 
+            this.rellax = new Rellax(scene[5], {
+                speed: 1,
+                center: false,
+                wrapper: null,
+                round: true,
+                vertical: true,
+                horizontal: false
+            });
+        }
   }
 
   render() {

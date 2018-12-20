@@ -20,7 +20,7 @@ export class AppHeader {
               <div class='header-right'>
                 <div class='phone'>
                   <img class='phone-icon' src="/assets/icon/phone-icon.svg" alt="ForteMarket phone"/>
-                  <a href='callto:2727'>2727</a>
+                  <a href='tel:2727'>2727</a>
                 </div>
                 <div class='btn'><a href="https://kassa.forte.kz" target="_blank">Вход</a></div>
               </div>

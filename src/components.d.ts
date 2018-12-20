@@ -7,7 +7,8 @@
 
 import '@stencil/core';
 
-
+import '@stencil/router';
+import '@stencil/state-tunnel';
 
 
 export namespace Components {
@@ -44,6 +45,9 @@ export namespace Components {
     'value'?: string;
   }
 
+  interface MainApp {}
+  interface MainAppAttributes extends StencilHTMLAttributes {}
+
   interface OpportunityItem {
     'listItem': any;
   }
@@ -65,6 +69,7 @@ declare global {
     'CarouselComponent': Components.CarouselComponent;
     'ContactsComponent': Components.ContactsComponent;
     'InputField': Components.InputField;
+    'MainApp': Components.MainApp;
     'OpportunityItem': Components.OpportunityItem;
     'OpportunityList': Components.OpportunityList;
     'ParallaxComponent': Components.ParallaxComponent;
@@ -76,6 +81,7 @@ declare global {
     'carousel-component': Components.CarouselComponentAttributes;
     'contacts-component': Components.ContactsComponentAttributes;
     'input-field': Components.InputFieldAttributes;
+    'main-app': Components.MainAppAttributes;
     'opportunity-item': Components.OpportunityItemAttributes;
     'opportunity-list': Components.OpportunityListAttributes;
     'parallax-component': Components.ParallaxComponentAttributes;
@@ -112,6 +118,12 @@ declare global {
     new (): HTMLInputFieldElement;
   };
 
+  interface HTMLMainAppElement extends Components.MainApp, HTMLStencilElement {}
+  var HTMLMainAppElement: {
+    prototype: HTMLMainAppElement;
+    new (): HTMLMainAppElement;
+  };
+
   interface HTMLOpportunityItemElement extends Components.OpportunityItem, HTMLStencilElement {}
   var HTMLOpportunityItemElement: {
     prototype: HTMLOpportunityItemElement;
@@ -136,6 +148,7 @@ declare global {
     'carousel-component': HTMLCarouselComponentElement
     'contacts-component': HTMLContactsComponentElement
     'input-field': HTMLInputFieldElement
+    'main-app': HTMLMainAppElement
     'opportunity-item': HTMLOpportunityItemElement
     'opportunity-list': HTMLOpportunityListElement
     'parallax-component': HTMLParallaxComponentElement
@@ -147,6 +160,7 @@ declare global {
     'carousel-component': HTMLCarouselComponentElement;
     'contacts-component': HTMLContactsComponentElement;
     'input-field': HTMLInputFieldElement;
+    'main-app': HTMLMainAppElement;
     'opportunity-item': HTMLOpportunityItemElement;
     'opportunity-list': HTMLOpportunityListElement;
     'parallax-component': HTMLParallaxComponentElement;

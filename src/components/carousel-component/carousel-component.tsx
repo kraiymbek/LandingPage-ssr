@@ -1,4 +1,4 @@
-import { Component, Element } from '@stencil/core';
+import { Component, Element, Prop } from '@stencil/core';
 import Swiper from 'swiper';
 
 
@@ -50,30 +50,35 @@ export class CarouselComponent {
   mySwiper: Swiper;
   currentSlide: any;
   currentPaginator: any;
+  @Prop({ context: 'isServer' }) private isServer: boolean;
 
   componentDidLoad() {
-    this.swipedTabsSlider = this.slides.querySelector('.swiper-container');
-      this.mySwiper = new Swiper(this.swipedTabsSlider, {
-          speed: 400,
-          effect: 'fade',
-          fadeEffect: {
-              crossFade: true
-          },
-          autoplay: {
-              delay: 4000,
-          },
-          spaceBetween: 100,
-          pagination: {
-              el: '.swiper-pagination',
-              clickable: true,
-          },
-      });
-      this.mySwiper.on('slideChange', () => {
-          this.updateIndicatorPosition();
-      });
-      this.currentSlide = this.slides.querySelectorAll('.navigation-button');
-      this.currentSlide[0].classList.add('segment-button-checked');
-      this.currentPaginator = this.slides.querySelectorAll('.pagination-bullet');
+      if (this.isServer === false) {
+          this.swipedTabsSlider = this.slides.querySelector('.swiper-container');
+          this.mySwiper = new Swiper(this.swipedTabsSlider, {
+              speed: 1000,
+              effect: 'fade',
+              fadeEffect: {
+                  crossFade: true
+              },
+              autoplay: {
+                  delay: 5000,
+                  waitForTransition: false,
+                  disableOnInteraction: false,
+              },
+              spaceBetween: 100,
+              pagination: {
+                  el: '.swiper-pagination',
+                  clickable: true,
+              },
+          });
+          this.mySwiper.on('slideChange', () => {
+              this.updateIndicatorPosition();
+          });
+          this.currentSlide = this.slides.querySelectorAll('.navigation-button');
+          this.currentSlide[0].classList.add('segment-button-checked');
+          this.currentPaginator = this.slides.querySelectorAll('.pagination-bullet');
+      }
   }
 
   updateIndicatorPosition() {
@@ -103,9 +108,9 @@ export class CarouselComponent {
         return(
             <div class="swiper-slide slide">
               <div class='slide-left'>
-                <h4 class='slide-title'>{item.tabName}</h4>
+                <div class='slide-title'>{item.tabName}</div>
                 <p class='slide-description'>{item.description}</p>
-                <div class='line'></div>
+                {/*<div class='line'></div>*/}
               </div>
               <div class='slide-right'>
                   <div class="inner-slider-right">

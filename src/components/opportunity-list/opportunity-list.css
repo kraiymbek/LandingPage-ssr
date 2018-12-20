@@ -10,6 +10,12 @@
     margin-bottom: 72px;
 }
 
+opportunity-item:nth-child(2) .list,
+opportunity-item:nth-child(3) .list,
+opportunity-item:nth-child(4) .list {
+    list-style-type: none;
+}
+
 @media (min-width: 320px) and (max-width: 767px) {
     .opportunity-list-section .section-descr {
         flex-direction: column;

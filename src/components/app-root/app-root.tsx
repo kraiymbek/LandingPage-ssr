@@ -1,4 +1,5 @@
 import { Component } from '@stencil/core';
+import '@stencil/router';
 
 @Component({
   tag: 'app-root',
@@ -7,13 +8,13 @@ import { Component } from '@stencil/core';
 export class AppRoot {
   render() {
     return [
-      <div class="page-header">
-        <app-header></app-header>
-        <parallax-component></parallax-component>
-        <opportunity-list></opportunity-list>
-        <carousel-component></carousel-component>
-        <contacts-component></contacts-component>
-      </div>
+      <stencil-router>
+        <stencil-route-switch>
+          <stencil-route url="/" component="main-app" exact={true}/>
+          <stencil-route url="/checkHealth" component="main-app"/>
+        </stencil-route-switch>
+        </stencil-router>
     ];
+
   }
 }

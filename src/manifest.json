@@ -1,6 +1,6 @@
 {
-  "name": "Stencil Starter SSR",
-  "short_name": "Stencil",
+  "name": "ForteKassa - кассовое приложение для продажи и учёта товаров",
+  "short_name": "ForteKassa",
   "start_url": "/",
   "display": "standalone",
   "icons": [{

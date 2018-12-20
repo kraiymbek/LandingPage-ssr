@@ -140,11 +140,11 @@ export class ContactsComponent {
                   </div>
                   <div class='contact-desc-item'>
                     <img src="/assets/icon/contacts-icon/contacts-icon2.svg" alt="Телефон"/>
-                    <p>Тел: <a href="callto:87271245678">+7 (702) 112-02-03</a></p>
+                    <p>Тел: <a href="tel:87271245678">+7 (702) 112-02-03</a></p>
                   </div>
                   <div class='contact-desc-item'>
                     <img src="/assets/icon/contacts-icon/contacts-icon3.svg" alt="Call center"/>
-                    <p>Call-center: <a href="callto:2727">2727 (бесплатный звонок)</a> </p>
+                    <p>Call-center: <a href="tel:2727">2727 (бесплатный звонок)</a> </p>
                   </div>
                   <div class='copyright'>&copy; ТОО “DAR ecosystem”, {this.date.getFullYear()}</div>
                 </div>

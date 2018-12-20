@@ -10,17 +10,6 @@ export class InputField {
 
   @Element() host: HTMLElement;
 
-  @Event() submitData: EventEmitter;
-  submitDataHandler(e) {
-    this.submitData.emit({
-      name: this.name,
-      value: e.target.value,
-    });
-      if (this.name === 'email' && !e.target.value) {
-          this.maskInputEl.value = "+7";
-      }
-  }
-
   @Prop({reflectToAttr: true}) placeholder: string;
   @Prop() label: string;
   @Prop() name: string;
@@ -29,20 +18,26 @@ export class InputField {
   @Prop() mask: boolean;
   @Prop() value: string;
 
-
   phoneMask: IMask;
   maskInputEl: any;
+
+    @Event() submitData: EventEmitter;
+    submitDataHandler(e) {
+        this.submitData.emit({
+            name: this.name,
+            value: e.target.value,
+        });
+    }
 
 
   componentDidLoad() {
     if(this.mask) {
       this.maskInputEl = this.host.querySelector('#input-mask');
-      if (!this.maskInputEl.value) {
-          this.maskInputEl.defaultValue = "+7";
-      }
       this.phoneMask = new IMask(
           this.maskInputEl, {
-            mask: '+{7} (000) 000-00-00'
+            mask: '+7 (000) 000-00-00',
+              lazy: false,
+              country: 'Kazakhstan'
           });
     }
   }
